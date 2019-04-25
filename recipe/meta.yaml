@@ -11,19 +11,21 @@ source:
 
 build:
     number: {{ buildnumber }}
+    ignore_run_exports:
+      - blas
 
 requirements:
     build:
       - {{ compiler('c') }}
     host:
-      - libblas
-      - libcblas
       - python
       - setuptools
+      - mkl-devel
       - cython
       - numpy 1.11.*
     run:
       - python
+      - mkl
       - six
       - {{ pin_compatible('numpy') }}
 
@@ -33,6 +35,7 @@ test:
     requires:
       - nose
     imports:
+      - mkl
 
 about:
     home: http://github.com/IntelPython/mkl-service
