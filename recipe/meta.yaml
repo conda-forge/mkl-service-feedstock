@@ -11,6 +11,8 @@ source:
 
 build:
     number: {{ buildnumber }}
+    ignore_run_exports:
+      - blas
 
 requirements:
     build:
