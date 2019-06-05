@@ -13,6 +13,7 @@ build:
     number: {{ buildnumber }}
     ignore_run_exports:
       - blas
+      - mkl-service
 
 requirements:
     build:
@@ -22,12 +23,10 @@ requirements:
       - setuptools
       - mkl-devel
       - cython
-      - numpy 1.11.*
     run:
       - python
       - mkl
       - six
-      - {{ pin_compatible('numpy') }}
 
 test:
     commands:
