@@ -1,4 +1,4 @@
-{% set version = "2.1.0" %}
+{% set version = "2.2.0" %}
 {% set buildnumber = 0 %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
     url: https://github.com/IntelPython/mkl-service/archive/v{{version}}.tar.gz
-    sha256: 28b27eefeb407282179864a17a791ce7a2b71ba32b85ce5cba636ecee84132f1
+    sha256: c48d53e984dcba13ac3e8fe51c634b1e9973abe1ea61ad1e635f76f20f731cdb
 
 build:
     number: {{ buildnumber }}
