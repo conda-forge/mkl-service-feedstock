@@ -1,13 +1,13 @@
-{% set version = "2.3.0" %}
-{% set buildnumber = 2 %}
+{% set version = "2.4.0" %}
+{% set buildnumber = 0 %}
 
 package:
     name: mkl-service
     version: {{ version }}
 
 source:
-    url: https://github.com/IntelPython/mkl-service/archive/v{{ version }}.tar.gz
-    sha256: f0c61f44f29d1264a464c14791b042826f0f74da094c3355dcc295943c46fed5
+    url: https://github.com/IntelPython/mkl-service/archive/v{{ version }}.post0.tar.gz
+    sha256: 7c515b7a1442c58b81c027fd13d188b28283df7c4d7df615e0c2f7618eb4a69c
 
 build:
     number: {{ buildnumber }}
