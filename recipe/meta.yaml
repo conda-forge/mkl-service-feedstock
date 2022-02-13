@@ -8,6 +8,9 @@ package:
 source:
     url: https://github.com/IntelPython/mkl-service/archive/v{{ version }}.post0.tar.gz
     sha256: 7c515b7a1442c58b81c027fd13d188b28283df7c4d7df615e0c2f7618eb4a69c
+    patches:
+      # https://github.com/IntelPython/mkl-service/pull/24
+      - 24-conditional-mpich2.patch
 
 build:
     number: {{ buildnumber }}
