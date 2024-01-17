@@ -1,5 +1,4 @@
 {% set version = "2.4.0" %}
-{% set buildnumber = 0 %}
 
 package:
     name: mkl-service
@@ -11,9 +10,11 @@ source:
     patches:
       # https://github.com/IntelPython/mkl-service/pull/24
       - 24-conditional-mpich2.patch
+      # https://github.com/IntelPython/mkl-service/pull/31
+      - 31-test-mkl-service.patch
 
 build:
-    number: {{ buildnumber }}
+    number: 1
     ignore_run_exports:
       - blas
       - mkl-service
@@ -32,12 +33,12 @@ requirements:
       - six
 
 test:
-    commands:
-      - nosetests -v mkl
-    requires:
-      - nose
     imports:
       - mkl
+    commands:
+      - python tests/test_mkl_service.py -v
+    source_files:
+      - tests
 
 about:
     home: http://github.com/IntelPython/mkl-service
