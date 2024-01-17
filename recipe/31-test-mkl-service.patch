@@ -1,8 +1,8 @@
 diff --git a/tests/test_mkl_service.py b/tests/test_mkl_service.py
-index 43574e3..d0c1876 100644
+index 8c9d2b4..9f4567b 100644
 --- a/tests/test_mkl_service.py
 +++ b/tests/test_mkl_service.py
-@@ -24,31 +24,32 @@
+@@ -24,33 +24,34 @@
  # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  
  
@@ -15,6 +15,7 @@ index 43574e3..d0c1876 100644
  
 -class test_version_information():
 +class test_version_information(unittest.TestCase):
+     # https://software.intel.com/en-us/mkl-developer-reference-c-version-information
      def test_get_version(self):
          v = mkl.get_version()
 -        assert(isinstance(v, dict))
@@ -36,6 +37,7 @@ index 43574e3..d0c1876 100644
  
 -class test_threading_control():
 +class TestThreadingControl(unittest.TestCase):
+     # https://software.intel.com/en-us/mkl-developer-reference-c-threading-control
      def test_set_num_threads(self):
          saved = mkl.get_max_threads()
          half_nt = int( (1 + saved) / 2 ) 
@@ -45,7 +47,7 @@ index 43574e3..d0c1876 100644
          mkl.set_num_threads(saved)
  
      def test_domain_set_num_threads_blas(self):
-@@ -60,49 +61,49 @@ class test_threading_control():
+@@ -62,49 +63,49 @@ class test_threading_control():
          fft_nt = int( (3 + 2*saved_fft_nt)/4 )
          vml_nt = int( (3 + 3*saved_vml_nt)/4 )
          status = mkl.domain_set_num_threads(blas_nt, domain='blas')
@@ -113,7 +115,7 @@ index 43574e3..d0c1876 100644
  
      def test_set_dynamic(self):
          mkl.set_dynamic(True)
-@@ -129,37 +130,37 @@ class test_threading_control():
+@@ -131,37 +132,37 @@ class test_threading_control():
          mkl.get_dynamic()
  
  
@@ -156,19 +158,19 @@ index 43574e3..d0c1876 100644
  
 -class test_memory_management():
 +class test_memory_management(unittest.TestCase):
+     # https://software.intel.com/en-us/mkl-developer-reference-c-memory-management
      def test_free_buffers(self):
          mkl.free_buffers()
- 
-@@ -188,7 +189,7 @@ class test_memory_management():
+@@ -191,7 +192,7 @@ class test_memory_management():
          mkl.set_memory_limit(128)
  
  
 -class test_cnr_control():
 +class TestCNRControl(unittest.TestCase):
+     # https://software.intel.com/en-us/mkl-developer-reference-c-conditional-numerical-reproducibility-control
      def test_cbwr(self):
          branches = [
-             'off',
-@@ -213,18 +214,20 @@ class test_cnr_control():
+@@ -217,18 +218,20 @@ class test_cnr_control():
              'avx512_e1,strict',
          ]
          for branch in branches:
@@ -194,16 +196,16 @@ index 43574e3..d0c1876 100644
          elif status != 'err_unsupported_branch':
              raise AssertionError(status)
  
-@@ -232,7 +235,7 @@ class test_cnr_control():
+@@ -236,7 +239,7 @@ class test_cnr_control():
          mkl.cbwr_get_auto_branch()
  
  
 -class test_miscellaneous():
 +class test_miscellaneous(unittest.TestCase):
+     # https://software.intel.com/en-us/mkl-developer-reference-c-miscellaneous
      def test_enable_instructions_avx512_mic_e1(self):
          mkl.enable_instructions('avx512_mic_e1')
- 
-@@ -266,7 +269,7 @@ class test_miscellaneous():
+@@ -271,7 +274,7 @@ class test_miscellaneous():
      #def test_set_mpi_custom(self):
      #    mkl.set_mpi('custom', 'custom_library_name')
  
@@ -212,16 +214,16 @@ index 43574e3..d0c1876 100644
      def test_set_mpi_msmpi(self):
          mkl.set_mpi('msmpi')
  
-@@ -277,7 +280,7 @@ class test_miscellaneous():
+@@ -282,7 +285,7 @@ class test_miscellaneous():
      #    mkl.set_mpi('mpich2')
  
  
 -class test_vm_service_functions():
 +class test_vm_service_functions(unittest.TestCase):
+     # https://software.intel.com/en-us/mkl-developer-reference-c-vm-service-functions
      def test_vml_set_get_mode_roundtrip(self):
          saved = mkl.vml_get_mode()
-         mkl.vml_set_mode(*saved) # should not raise errors
-@@ -332,3 +335,6 @@ class test_vm_service_functions():
+@@ -338,3 +341,6 @@ class test_vm_service_functions():
  
      def test_vml_clear_err_status(self):
          mkl.vml_clear_err_status()
