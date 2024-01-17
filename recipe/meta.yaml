@@ -37,6 +37,8 @@ test:
       - mkl
     commands:
       - python tests/test_mkl_service.py -v
+    source_files:
+      - tests
 
 about:
     home: http://github.com/IntelPython/mkl-service
