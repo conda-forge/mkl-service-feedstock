@@ -11,6 +11,8 @@ source:
     patches:
       # https://github.com/IntelPython/mkl-service/pull/24
       - 24-conditional-mpich2.patch
+      # https://github.com/IntelPython/mkl-service/pull/31
+      - 31-test-mkl-service.patch
 
 build:
     number: {{ buildnumber }}
@@ -32,12 +34,10 @@ requirements:
       - six
 
 test:
-    commands:
-      - nosetests -v mkl
-    requires:
-      - nose
     imports:
       - mkl
+    commands:
+      - python tests/test_mkl_service.py -v
 
 about:
     home: http://github.com/IntelPython/mkl-service
