@@ -10,6 +10,7 @@ source:
 
 build:
     number: 0
+    skip: True  # [osx or python_impl == 'pypy']
     ignore_run_exports:
       - blas
       - mkl-service
