@@ -32,7 +32,9 @@ test:
     imports:
       - mkl
     commands:
-      - pytest -vv --pyargs mkl
+      # calling get_version upsets test_cbwr_*, bug filed, so exclude, but run separately
+      - pytest -vv --pyargs mkl -k "not test_get_version"
+      - pytest -vv --pyargs mkl -k "test_get_version"
 
 about:
     home: http://github.com/IntelPython/mkl-service
