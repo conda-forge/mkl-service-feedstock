@@ -1,20 +1,16 @@
-{% set version = "2.4.0" %}
+{% set version = "2.4.1" %}
 
 package:
     name: mkl-service
     version: {{ version }}
 
 source:
-    url: https://github.com/IntelPython/mkl-service/archive/v{{ version }}.post0.tar.gz
-    sha256: 7c515b7a1442c58b81c027fd13d188b28283df7c4d7df615e0c2f7618eb4a69c
-    patches:
-      # https://github.com/IntelPython/mkl-service/pull/24
-      - 24-conditional-mpich2.patch
-      # https://github.com/IntelPython/mkl-service/pull/31
-      - 31-test-mkl-service.patch
+    url: https://github.com/IntelPython/mkl-service/archive/v{{ version }}.tar.gz
+    sha256: e9a587b49779f189744db99bece85fd1e51d9113d708de45889f7f9aaaa51e2d
 
 build:
-    number: 1
+    number: 0
+    skip: True  # [osx]
     ignore_run_exports:
       - blas
       - mkl-service
@@ -30,15 +26,17 @@ requirements:
     run:
       - python
       - mkl
-      - six
 
 test:
+    requires:
+      - pytest <8  # [python_impl == "pypy"]
+      - pytest     # [not (python_impl == "pypy")]
     imports:
       - mkl
     commands:
-      - python tests/test_mkl_service.py -v
-    source_files:
-      - tests
+      # calling get_version upsets test_cbwr_*, bug filed, so exclude, but run separately
+      - pytest -vv --pyargs mkl -k "not test_get_version"
+      - pytest -vv --pyargs mkl -k "test_get_version"
 
 about:
     home: http://github.com/IntelPython/mkl-service
