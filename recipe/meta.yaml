@@ -29,7 +29,8 @@ requirements:
 
 test:
     requires:
-      - pytest
+      - pytest <8  # [python_impl == "pypy"]
+      - pytest     # [not (python_impl == "pypy")]
     imports:
       - mkl
     commands:
