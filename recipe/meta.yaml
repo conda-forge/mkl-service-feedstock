@@ -9,7 +9,7 @@ source:
     sha256: e9a587b49779f189744db99bece85fd1e51d9113d708de45889f7f9aaaa51e2d
 
 build:
-    number: 1
+    number: 2
     skip: True  # [osx]
     ignore_run_exports:
       - blas
