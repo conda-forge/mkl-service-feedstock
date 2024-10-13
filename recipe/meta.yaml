@@ -1,60 +1,52 @@
-{% set version = "2.4.1" %}
+{% set version = "2.4.2" %}
 
 package:
-    name: mkl-service
-    version: {{ version }}
+  name: mkl-service
+  version: {{ version }}
 
 source:
-    url: https://github.com/IntelPython/mkl-service/archive/v{{ version }}.tar.gz
-    sha256: e9a587b49779f189744db99bece85fd1e51d9113d708de45889f7f9aaaa51e2d
+  url: https://github.com/IntelPython/mkl-service/archive/v{{ version }}.tar.gz
+  sha256: 916dd6d965fa2e956c001ca2d33dd82b2aecf2d3dff81fdc8b6e85c96debcd9f
 
 build:
-    number: 2
-    skip: True  # [osx]
-    ignore_run_exports:
-      - blas
-      - mkl-service
+  number: 0
+  skip: true  # [osx]
+  ignore_run_exports:
+    - blas
+    - mkl-service
 
 requirements:
-    build:
-      - {{ compiler('c') }}
-      - {{ stdlib("c") }}
-    host:
-      - python
-      - setuptools
-      - mkl-devel
-      - cython
-    run:
-      - python
-      - mkl
+  build:
+    - {{ compiler('c') }}
+    - {{ stdlib("c") }}
+  host:
+    - python
+    - setuptools
+    - mkl-devel
+    - cython
+  run:
+    - python
+    - mkl
 
 test:
-    requires:
-      - pytest <8  # [python_impl == "pypy"]
-      - pytest     # [not (python_impl == "pypy")]
-    imports:
-      - mkl
-    commands:
+  requires:
+    - pytest <8    # [python_impl == "pypy"]
+    - pytest       # [not (python_impl == "pypy")]
+  imports:
+    - mkl
+  commands:
       # calling get_version upsets test_cbwr_*, bug filed, so exclude, but run separately
-      - pytest -vv --pyargs mkl -k "not test_get_version"
-      - pytest -vv --pyargs mkl -k "test_get_version"
+    - pytest -vv --pyargs mkl -k "not test_get_version"
+    - pytest -vv --pyargs mkl -k "test_get_version"
 
 about:
-    home: http://github.com/IntelPython/mkl-service
-    license: BSD-3-Clause
-    license_file: LICENSE.txt
-    license_family: BSD
-    description:
-        Intel(R) Math Kernel Library (Intel(R) MKL) support functions are
-        subdivided into the following groups according to their purpose, such as
-            Version Information
-            Threading Control
-            Timing
-            Memory Management
-            Conditional Numerical Reproducibility Control
-            Miscellaneous
-    summary: Python hooks for Intel(R) Math Kernel Library runtime control settings.
+  home: http://github.com/IntelPython/mkl-service
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
+  license_family: BSD
+  description: Intel(R) Math Kernel Library (Intel(R) MKL) support functions are subdivided into the following groups according to their purpose, such as Version Information Threading Control Timing Memory Management Conditional Numerical Reproducibility Control Miscellaneous
+  summary: Python hooks for Intel(R) Math Kernel Library runtime control settings.
 
 extra:
   recipe-maintainers:
-     - oleksandr-pavlyk
+    - oleksandr-pavlyk
