@@ -10,7 +10,7 @@ source:
 
 build:
   number: 2
-  skip: true  # [not (linux64 or win)]
+  skip: true  # [osx and arm64]
   ignore_run_exports:
     - blas
     - mkl-service
