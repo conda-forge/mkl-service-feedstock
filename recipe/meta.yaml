@@ -9,7 +9,7 @@ source:
   sha256: ee5506eb95ff1f4d67cd5f3e5b4648d752900dd10af8219f9b3857b306945a56
 
 build:
-  number: 1
+  number: 2
   skip: true  # [osx and arm64]
   ignore_run_exports:
     - blas
@@ -22,7 +22,8 @@ requirements:
   host:
     - python
     - setuptools
-    - mkl-devel
+    - mkl-devel <2024  # [osx]
+    - mkl-devel  # [not osx]
     - cython
   run:
     - python
