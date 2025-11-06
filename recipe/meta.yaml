@@ -22,8 +22,8 @@ requirements:
   host:
     - python
     - setuptools
-    - mkl-devel <2024 # [osx]
-    - mkl-devel # [not osx]
+    - mkl-devel <2024  # [osx]
+    - mkl-devel  # [not osx]
     - cython
   run:
     - python
