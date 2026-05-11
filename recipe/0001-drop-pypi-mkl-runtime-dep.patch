@@ -1,0 +1,23 @@
+From: Ben Mares <services-mkl-service-feedstock@tensorial.com>
+Subject: [PATCH] Drop PyPI mkl runtime dependency for conda-forge build
+
+Upstream commit c790ca346e ("add mkl-devel as build dependency and mkl
+as runtime dependency") added `dependencies = ["mkl"]` to pyproject.toml.
+That declares a runtime dependency on the PyPI `mkl` wheel, which is
+satisfied on PyPI but not on conda-forge: the conda-forge `mkl` package
+provides the libraries via conda metadata only and ships no pip-visible
+.dist-info. The conda-level `run: mkl` requirement already pulls in the
+runtime, so we just need to remove the redeclaration to keep `pip check`
+happy in downstream environments.
+
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -56,7 +56,7 @@ classifiers = [
+   "Operating System :: POSIX",
+   "Operating System :: Unix"
+ ]
+-dependencies = ["mkl"]
++dependencies = []
+ description = "Python hooks for Intel® oneAPI Math Kernel Library (oneMKL) runtime control settings"
+ dynamic = ["version"]
+ keywords = ["MKL"]
