@@ -38,11 +38,16 @@ requirements:
 
 test:
   requires:
+    - pip
     - pytest <8    # [python_impl == "pypy"]
     - pytest       # [not (python_impl == "pypy")]
   imports:
     - mkl
   commands:
+      # Catch future regressions where upstream wheel metadata declares a
+      # PyPI dependency that conda-forge does not provide (see the
+      # 0001-drop-pypi-mkl-runtime-dep.patch source patch).
+    - pip check
       # calling get_version upsets test_cbwr_*, bug filed, so exclude, but run separately
     - pytest -vv --pyargs mkl -k "not test_get_version"
     - pytest -vv --pyargs mkl -k "test_get_version"
