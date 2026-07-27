@@ -1,4 +1,4 @@
-{% set version = "2.7.2" %}
+{% set version = "2.8.0" %}
 
 package:
   name: mkl-service
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/IntelPython/mkl-service/archive/{{ version }}.tar.gz
-  sha256: 6dfd59d47dc68d5f89555ccf137dcc9a1154be3e2cef282fcdbc96399f0dc70c
+  sha256: b1c90e0e6dabe577e4db93aecc157591da28e9e81c5782a9f6fbd9b20add9f78
 
 build:
   number: 0
@@ -21,7 +21,10 @@ requirements:
     - {{ stdlib("c") }}
   host:
     - python
-    - setuptools
+    - pip
+    - meson-python >=0.13.0
+    - cmake
+    - ninja
     - mkl-devel <2024  # [osx]
     - mkl-devel  # [not osx]
     - cython
