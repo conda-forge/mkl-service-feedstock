@@ -21,7 +21,9 @@ requirements:
     - {{ stdlib("c") }}
   host:
     - python
-    - setuptools
+    - meson-python >=0.13.0
+    - cmake
+    - ninja
     - mkl-devel <2024  # [osx]
     - mkl-devel  # [not osx]
     - cython
