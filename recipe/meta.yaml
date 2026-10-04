@@ -47,8 +47,12 @@ about:
   license: BSD-3-Clause
   license_file: LICENSE.txt
   license_family: BSD
-  description: Intel(R) Math Kernel Library (Intel(R) MKL) support functions are subdivided into the following groups according to their purpose, such as Version Information Threading Control Timing Memory Management Conditional Numerical Reproducibility Control Miscellaneous
-  summary: Python hooks for Intel(R) Math Kernel Library runtime control settings.
+  description: >-
+    Intel® oneAPI Math Kernel Library (oneMKL) support functions are subdivided
+    into the following groups according to their purpose: Version Information,
+    Threading Control, Timing, Memory Management, Conditional Numerical
+    Reproducibility Control, and Miscellaneous.
+  summary: Python hooks for Intel® oneAPI Math Kernel Library (oneMKL) runtime control settings
 
 extra:
   recipe-maintainers:
