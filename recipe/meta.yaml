@@ -46,7 +46,7 @@ test:
     - pytest -vv --pyargs mkl -k "test_get_version"
 
 about:
-  home: http://github.com/IntelPython/mkl-service
+  home: https://github.com/IntelPython/mkl-service
   license: BSD-3-Clause
   license_file: LICENSE.txt
   license_family: BSD
