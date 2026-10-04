@@ -1,4 +1,4 @@
-{% set version = "2.8.0" %}
+{% set version = "2.9.0" %}
 
 package:
   name: mkl-service
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/IntelPython/mkl-service/archive/{{ version }}.tar.gz
-  sha256: b1c90e0e6dabe577e4db93aecc157591da28e9e81c5782a9f6fbd9b20add9f78
+  sha256: 61cc4bfadb390c9d1adb8293df1b5d901f34a9cce947253775d8de9175ed1453
 
 build:
   number: 0
@@ -27,7 +27,7 @@ requirements:
     - ninja
     - mkl-devel <2024  # [osx]
     - mkl-devel  # [not osx]
-    - cython
+    - cython >=3.1.0
   run:
     - python
     - mkl
@@ -35,23 +35,24 @@ requirements:
 test:
   requires:
     - pip
-    - pytest <8    # [python_impl == "pypy"]
-    - pytest       # [not (python_impl == "pypy")]
+    - pytest
   imports:
     - mkl
   commands:
     - pip check
-      # calling get_version upsets test_cbwr_*, bug filed, so exclude, but run separately
-    - pytest -vv --pyargs mkl -k "not test_get_version"
-    - pytest -vv --pyargs mkl -k "test_get_version"
+    - pytest -vv --pyargs mkl
 
 about:
-  home: http://github.com/IntelPython/mkl-service
+  home: https://github.com/IntelPython/mkl-service
   license: BSD-3-Clause
   license_file: LICENSE.txt
   license_family: BSD
-  description: Intel(R) Math Kernel Library (Intel(R) MKL) support functions are subdivided into the following groups according to their purpose, such as Version Information Threading Control Timing Memory Management Conditional Numerical Reproducibility Control Miscellaneous
-  summary: Python hooks for Intel(R) Math Kernel Library runtime control settings.
+  description: >-
+    Intel® oneAPI Math Kernel Library (oneMKL) support functions are subdivided
+    into the following groups according to their purpose: Version Information,
+    Threading Control, Timing, Memory Management, Conditional Numerical
+    Reproducibility Control, and Miscellaneous.
+  summary: Python hooks for Intel® oneAPI Math Kernel Library (oneMKL) runtime control settings
 
 extra:
   recipe-maintainers:
