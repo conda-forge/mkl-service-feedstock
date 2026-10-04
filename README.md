@@ -3,13 +3,13 @@ About mkl-service-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/mkl-service-feedstock/blob/main/LICENSE.txt)
 
-Home: http://github.com/IntelPython/mkl-service
+Home: https://github.com/IntelPython/mkl-service
 
 Package license: BSD-3-Clause
 
-Summary: Python hooks for Intel(R) Math Kernel Library runtime control settings.
+Summary: Python hooks for Intel® oneAPI Math Kernel Library (oneMKL) runtime control settings
 
-Intel(R) Math Kernel Library (Intel(R) MKL) support functions are subdivided into the following groups according to their purpose, such as Version Information Threading Control Timing Memory Management Conditional Numerical Reproducibility Control Miscellaneous
+Intel® oneAPI Math Kernel Library (oneMKL) support functions are subdivided into the following groups according to their purpose: Version Information, Threading Control, Timing, Memory Management, Conditional Numerical Reproducibility Control, and Miscellaneous.
 
 Current build status
 ====================
